@@ -1,15 +1,7 @@
 require 'io/console'
 
 def validate_input?(input)
-  if input == "R"
-    true
-  elsif input == "P"
-    true
-  elsif input == "S"
-    true                        
-  else
-    false 
-  end
+  input == "R" || input == "P" || input == "S"
 end
 
 def alter_input(user_choice)
@@ -37,32 +29,32 @@ def print_result(user_choice, comp_choice)
   puts "You picked #{user_choice}, and the computer picked #{comp_choice}:"
 end
 
-def determine_result(user_choice, comp_choice, wins)
+def determine_result(user_choice, comp_choice, number_of_wins)
   if user_choice == comp_choice
     puts "Draw"
-    wins = wins
+    number_of_wins = number_of_wins
   elsif user_choice == "Rock" && comp_choice == "Paper"
     puts "Paper covers Rock, you lose :("
-    wins = wins  
+    number_of_wins = number_of_wins  
   elsif user_choice == "Rock" && comp_choice == "Scissors"
     puts "Rock destroys Scissors, you win :)"
-    wins += 1
+    number_of_wins += 1
   elsif user_choice == "Paper" && comp_choice == "Rock"
     puts "Paper covers Rock, you win :)"
-    wins += 1
+    number_of_wins += 1
   elsif user_choice == "Paper" && comp_choice == "Scissors"  
     puts "Scissors slice Paper, you loose :("
-    wins = wins  
+    number_of_wins = number_of_wins  
   elsif user_choice == "Scissors" && comp_choice == "Rock"
     puts "Rock smashes Scissors, you loose :("
-    wins = wins
+    number_of_wins = number_of_wins
   else
     puts "Scissors cut paper, you win :)"
-    wins += 1         
+    number_of_wins += 1         
   end      
 end
 
-wins = 0
+number_of_wins = 0
 times_played = 0
 
 puts "Welcome what is your name?"
@@ -90,10 +82,10 @@ begin
   puts ""
   sleep(2)
   print_result(user_choice, comp_choice)
-  wins = determine_result(user_choice, comp_choice, wins)
+  number_of_wins = determine_result(user_choice, comp_choice, number_of_wins)
   times_played += 1
   puts ""
-  puts "#{user_name}, you are #{wins} for #{times_played}."
+  puts "#{user_name}, you are #{number_of_wins} for #{times_played}."
   puts ""
   puts "Choose R P or S to play again or type quit to exit"
 end while user_choice != "Quit"

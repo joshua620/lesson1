@@ -2,12 +2,12 @@ def say(x)
   puts "~ ~ ~ ~  #{x}  ~ ~ ~ ~"
 end
 
-def validate(num)
-  num =~  /^[-+]?((\d+(\.\d*)?)|(\.\d+))$/
+def validate(number)
+  number =~  /^[-+]?((\d+(\.\d*)?)|(\.\d+))$/
 end
 
-def validate_operation?(operation, second_num)
-  if operation == "/" && second_num == "0"
+def validate_operation?(operation, second_number)
+  if operation == "/" && second_number == "0"
     false    
   elsif operation == "+"
     true
@@ -22,55 +22,55 @@ def validate_operation?(operation, second_num)
   end
 end
 
-def do_math(first_num, second_num, operation)
+def do_math(first_number, second_number, operation)
   if operation == "+"
-    result = first_num.to_f + second_num.to_f
+    result = first_number.to_f + second_number.to_f
   elsif operation == "-"
-    result = first_num.to_f - second_num.to_f
+    result = first_number.to_f - second_number.to_f
   elsif operation == "*"
-    result = first_num.to_f * second_num.to_f
+    result = first_number.to_f * second_number.to_f
   else
-    result = first_num.to_f / second_num.to_f
+    result = first_number.to_f / second_number.to_f
   end
 end
 
-def round(num)
-  if num == num.to_i
-    num = "%g" % ("%.2f" % num) 
+def round(number)
+  if number == number.to_i
+    number = "%g" % ("%.2f" % number) 
   else
-    num = num
+    number = number
   end
 end
 
 begin
   say("Enter 1st number")
-  first_num = gets.chomp
-    until validate(first_num)
+  first_number = gets.chomp
+    until validate(first_number)
       say("Not a valid number, try again")
-      first_num = gets.chomp
+      first_number = gets.chomp
     end
 
   say("Enter 2nd number")
-  second_num = gets.chomp
-    until validate(second_num)
+  second_number = gets.chomp
+    until validate(second_number)
       say("Not a valid number, try again")
-      second_num = gets.chomp
+      second_number = gets.chomp
     end
 
   say("Enter your desired operation")
-    if second_num == "0"
+    if second_number == "0"
       puts "~ ~ ~ ~           +, -, *              ~ ~ ~ ~"
     else  
       puts "~ ~ ~ ~         +, -, *, /             ~ ~ ~ ~"
     end
 
   operation = gets.chomp
-    until validate_operation?(operation, second_num)
+    until validate_operation?(operation, second_number)
       say("Not a valid operation, try again")
       operation = gets.chomp
     end
 
-  result = do_math(first_num, second_num, operation)
+  result = do_math(first_number, second_number, operation)
   say("Your result is #{round(result)}")
   puts ""
   say("Press any key for another calculation, or type quit to exit")
